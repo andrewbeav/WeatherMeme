@@ -14,10 +14,10 @@ public class WeatherInfo {
     public static final String API_KEY = "bcf98db996d2d93497a184c6af4c3c7a";
     public static final String weatherUrlString = "api.openweathermap.org/data/2.5/weather";
 
-    private JSONObject weatherJSON, weatherData, coordData, windData, rainData;
+    private JSONObject weatherJSON, weatherData, windData, rainData;
 
     // All data from the JSon
-    private double temperature, highTemp, lowTemp, pressure, humidity, windSpeed, windDeg;
+    private double temperature, pressure, humidity, windSpeed, windDeg;
     private String name;
     private int rainVolume=-1;
 
@@ -26,11 +26,8 @@ public class WeatherInfo {
 
         try {
             this.weatherData = new JSONObject(weatherJSON.getString("main"));
-            this.coordData = new JSONObject(weatherJSON.getString("coord"));
 
             this.temperature = Double.parseDouble(weatherData.getString("temp"));
-            this.highTemp = Double.parseDouble(weatherData.getString("temp_max"));
-            this.lowTemp = Double.parseDouble(weatherData.getString("temp_min"));
             this.pressure = Double.parseDouble(weatherData.getString("pressure"));
             this.humidity = Double.parseDouble(weatherData.getString("humidity"));
             this.name = weatherJSON.getString("name");
@@ -57,14 +54,6 @@ public class WeatherInfo {
 
     public int getTemperature() {
         return (int)this.temperature;
-    }
-
-    public int getLowTemperature() {
-        return (int)this.lowTemp;
-    }
-
-    public int getHighTemperature() {
-        return (int)this.highTemp;
     }
 
     public double getPressure() {

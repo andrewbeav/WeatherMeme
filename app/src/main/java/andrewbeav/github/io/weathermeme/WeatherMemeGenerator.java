@@ -8,7 +8,7 @@ public class WeatherMemeGenerator {
     public static final int HOT_TRESHOLD = 80;
     public static final int COLD_TRESHOLD = 40;
     public static final int CHILLY_TRESHOLD = 60;
-    public static final int WIND_TRESHOLD = 15;
+    public static final int WIND_TRESHOLD = 25;
 
     private WeatherInfo weatherInfo;
 

@@ -2,6 +2,7 @@ package andrewbeav.github.io.weathermeme;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -11,12 +12,15 @@ import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -66,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements
         tempText = (TextView) findViewById(R.id.temp_text);
         humidityText = (TextView) findViewById(R.id.humidity_text);
         cityNameText = (TextView) findViewById(R.id.cityNameView);
-        lowTempText = (TextView) findViewById(R.id.low_temp_text);
-        highTempText = (TextView) findViewById(R.id.high_temp_text);
         windText = (TextView) findViewById(R.id.wind_text);
         rainText = (TextView) findViewById(R.id.rain_text);
         memeView = (ImageView) findViewById(R.id.memeView);
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements
                     .build();
         }
     }
+
+
 
     private double latitude, longitude;
 
