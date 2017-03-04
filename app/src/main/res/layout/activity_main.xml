@@ -24,6 +24,16 @@
         android:textSize="50sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/new_meme_button"
+        android:layout_toRightOf="@+id/cityNameView"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="15sp"
+        android:layout_below="@+id/memeView"
+        android:text="@string/new_meme_button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <GridLayout
         android:id="@+id/weather_info_layout"
         android:layout_below="@+id/cityNameView"
