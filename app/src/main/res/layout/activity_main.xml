@@ -25,13 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/new_meme_button"
+        android:id="@+id/refresh_button"
         android:layout_toRightOf="@+id/cityNameView"
         android:layout_marginLeft="10sp"
         android:layout_marginTop="15sp"
         android:layout_below="@+id/memeView"
-        android:text="@string/new_meme_button_text"
-        android:onClick="newMeme"
+        android:text="@string/refresh_button_text"
+        android:onClick="refreshWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

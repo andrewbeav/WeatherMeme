@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    public void newMeme(View view) {
+    public void refreshWeather(View view) {
         JSONDownloader jsonDownloader = new JSONDownloader(this);
         jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
     }

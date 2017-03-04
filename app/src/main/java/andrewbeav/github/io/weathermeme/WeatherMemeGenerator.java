@@ -6,7 +6,7 @@ package andrewbeav.github.io.weathermeme;
 
 public class WeatherMemeGenerator {
     public static final int HOT_TRESHOLD = 80;
-    public static final int COLD_TRESHOLD = 65;
+    public static final int COLD_TRESHOLD = 40;
 
     private WeatherInfo weatherInfo;
 
