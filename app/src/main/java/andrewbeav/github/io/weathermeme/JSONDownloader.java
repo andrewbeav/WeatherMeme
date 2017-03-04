@@ -82,8 +82,8 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
             mainActivity.tempText.setText(String.valueOf(weatherInfo.getTemperature()) + (char) 0x00B0 + "F");
             mainActivity.humidityText.setText("Humidity: " + String.valueOf(weatherInfo.getHumidity()) + "%");
 
-            if (weatherInfo.getRainVolume() != -1) {
-                mainActivity.rainText.setText("Rain Volume: " + String.valueOf(weatherInfo.getRainVolume()));
+            if (weatherInfo.getMain().equals("Rain")) {
+                mainActivity.rainText.setText(weatherInfo.getMainDescription());
             } else {
                 mainActivity.rainText.setText("No Rain");
             }
