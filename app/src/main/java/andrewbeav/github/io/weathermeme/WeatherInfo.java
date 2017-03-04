@@ -14,19 +14,17 @@ public class WeatherInfo {
     public static final String API_KEY = "bcf98db996d2d93497a184c6af4c3c7a";
     public static final String weatherUrlString = "api.openweathermap.org/data/2.5/weather";
 
-    private JSONObject weatherJSON, weatherData, windData, rainData;
+    private JSONObject weatherJSON, weatherData, windData, rainData, mainWeatherData;
 
     // All data from the JSon
     private double temperature, pressure, humidity, windSpeed, windDeg;
-    private String name;
-    private int rainVolume=-1;
+    private String name, main;
 
     public WeatherInfo(JSONObject weatherJSON) {
         this.weatherJSON = weatherJSON;
 
         try {
             this.weatherData = new JSONObject(weatherJSON.getString("main"));
-
             this.temperature = Double.parseDouble(weatherData.getString("temp"));
             this.pressure = Double.parseDouble(weatherData.getString("pressure"));
             this.humidity = Double.parseDouble(weatherData.getString("humidity"));
@@ -41,10 +39,10 @@ public class WeatherInfo {
                 this.windDeg = -1;
             }
             try {
-                this.rainData = new JSONObject(weatherJSON.getString("rain"));
-                this.rainVolume = Integer.parseInt(rainData.getString("3h"));
+                this.mainWeatherData = new JSONObject(weatherJSON.getString("weather"));
+                this.main = mainWeatherData.getString("main");
             } catch (JSONException e) {
-                this.rainVolume = -1;
+                this.main = null;
             }
 
         } catch (JSONException e) {
@@ -84,8 +82,8 @@ public class WeatherInfo {
         return null;
     }
 
-    public int getRainVolume() {
-        return this.rainVolume;
+    public String getMain() {
+        return this.main;
     }
 
     public String getCityName() {

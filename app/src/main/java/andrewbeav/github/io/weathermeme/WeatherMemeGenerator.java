@@ -8,7 +8,7 @@ public class WeatherMemeGenerator {
     public static final int HOT_TRESHOLD = 80;
     public static final int COLD_TRESHOLD = 40;
     public static final int CHILLY_TRESHOLD = 60;
-    public static final int WIND_TRESHOLD = 25;
+    public static final int WIND_TRESHOLD = 20;
 
     private WeatherInfo weatherInfo;
 
@@ -20,7 +20,7 @@ public class WeatherMemeGenerator {
         int rand = (int)(Math.random()*5) + 1;
         String result = "";
 
-        if (weatherInfo.getRainVolume() != -1) {
+        if (weatherInfo.getMain() != "Rain") {
             result = "rain" + rand;
         }
         else {
