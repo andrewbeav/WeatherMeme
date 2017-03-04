@@ -102,16 +102,16 @@ public class MainActivity extends AppCompatActivity implements
         if (mLastLocation != null) {
             latitude = mLastLocation.getLatitude();
             longitude = mLastLocation.getLongitude();
-            //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+            jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
         }
-        jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=SanAntonio,tx&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+        //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=SanAntonio,tx&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
     }
 
     public void refreshWeather(View view) {
         JSONDownloader jsonDownloader = new JSONDownloader(this);
-        //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+        jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
 
-        jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=SanAntonio,tx&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+        //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=SanAntonio,tx&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
     }
 
     @Override
