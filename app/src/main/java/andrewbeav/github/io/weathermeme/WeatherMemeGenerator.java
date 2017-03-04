@@ -7,6 +7,7 @@ package andrewbeav.github.io.weathermeme;
 public class WeatherMemeGenerator {
     public static final int HOT_TRESHOLD = 80;
     public static final int COLD_TRESHOLD = 40;
+    public static final int CHILLY_TRESHOLD = 60;
 
     private WeatherInfo weatherInfo;
 
@@ -28,9 +29,14 @@ public class WeatherMemeGenerator {
             else {
                 if (weatherInfo.getTemperature() > HOT_TRESHOLD) {
                     result = "hot_weather" + rand;
-                } else if (weatherInfo.getTemperature() < COLD_TRESHOLD) {
+                }
+                else if (weatherInfo.getTemperature() < COLD_TRESHOLD) {
                     result = "cold_weather" + rand;
-                } else {
+                }
+                else if (weatherInfo.getTemperature() < CHILLY_TRESHOLD) {
+                    result = "chilly" + rand;
+                }
+                else {
                     result = "neutral" + rand;
                 }
             }
