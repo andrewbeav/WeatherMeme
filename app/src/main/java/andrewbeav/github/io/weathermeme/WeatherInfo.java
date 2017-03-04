@@ -2,6 +2,7 @@ package andrewbeav.github.io.weathermeme;
 
 import android.util.JsonReader;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,11 +15,12 @@ public class WeatherInfo {
     public static final String API_KEY = "bcf98db996d2d93497a184c6af4c3c7a";
     public static final String weatherUrlString = "api.openweathermap.org/data/2.5/weather";
 
-    private JSONObject weatherJSON, weatherData, windData, rainData, mainWeatherData;
+    private JSONObject weatherJSON, weatherData, windData, rainData;
+    private JSONArray weatherArray;
 
     // All data from the JSon
     private double temperature, pressure, humidity, windSpeed, windDeg;
-    private String name, main;
+    private String name, main, mainDescription;
 
     public WeatherInfo(JSONObject weatherJSON) {
         this.weatherJSON = weatherJSON;
@@ -39,10 +41,13 @@ public class WeatherInfo {
                 this.windDeg = -1;
             }
             try {
-                this.mainWeatherData = new JSONObject(weatherJSON.getString("weather"));
-                this.main = mainWeatherData.getString("main");
+                this.weatherArray = new JSONArray(weatherJSON.getString("weather"));
+                JSONObject first = weatherArray.getJSONObject(0);
+                this.main = first.getString("main");
+                this.mainDescription = first.getString("description");
             } catch (JSONException e) {
                 this.main = null;
+                this.mainDescription = null;
             }
 
         } catch (JSONException e) {
@@ -84,6 +89,10 @@ public class WeatherInfo {
 
     public String getMain() {
         return this.main;
+    }
+
+    public String getMainDescription() {
+        return this.mainDescription;
     }
 
     public String getCityName() {

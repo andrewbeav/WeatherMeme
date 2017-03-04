@@ -20,7 +20,7 @@ public class WeatherMemeGenerator {
         int rand = (int)(Math.random()*5) + 1;
         String result = "";
 
-        if (weatherInfo.getMain() != "Rain") {
+        if (weatherInfo.getMain().equals("Rain")) {
             result = "rain" + rand;
         }
         else {
