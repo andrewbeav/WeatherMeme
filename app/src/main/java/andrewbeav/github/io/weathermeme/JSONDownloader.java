@@ -87,13 +87,13 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
             if (weatherInfo.getRainVolume() != -1) {
                 mainActivity.rainText.setText("Rain Volume: " + String.valueOf(weatherInfo.getRainVolume()));
             } else {
-                mainActivity.rainText.setText("No Rain :)");
+                mainActivity.rainText.setText("No Rain");
             }
 
             if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {
                 mainActivity.windText.setText("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
             } else {
-                mainActivity.windText.setText("No Wind :)");
+                mainActivity.windText.setText("No Wind");
             }
 
             WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);

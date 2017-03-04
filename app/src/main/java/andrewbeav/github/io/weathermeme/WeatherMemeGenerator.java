@@ -8,6 +8,7 @@ public class WeatherMemeGenerator {
     public static final int HOT_TRESHOLD = 80;
     public static final int COLD_TRESHOLD = 40;
     public static final int CHILLY_TRESHOLD = 60;
+    public static final int WIND_TRESHOLD = 15;
 
     private WeatherInfo weatherInfo;
 
@@ -23,7 +24,7 @@ public class WeatherMemeGenerator {
             result = "rain" + rand;
         }
         else {
-            if (weatherInfo.getWindSpeed() > 25) {
+            if (weatherInfo.getWindSpeed() > WIND_TRESHOLD) {
                 result = "wind" + rand;
             }
             else {
