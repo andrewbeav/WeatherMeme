@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Weather Meme</string>
+    <string name="city_default_text">City</string>
+    <string name="temp_default">T</string>
+    <string name="humidity_default">Humidity: </string>
+    <string name="low_temp_default">Low Temp: </string>
+    <string name="high_temp_default">High Temp: </string>
+    <string name="wind_default">Wind: </string>
+    <string name="rain_default">Rain Volume: </string>
+</resources>
