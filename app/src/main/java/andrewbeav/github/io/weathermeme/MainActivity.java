@@ -29,8 +29,6 @@ import com.google.android.gms.location.LocationServices;
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-
-
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
 
@@ -50,9 +48,10 @@ public class MainActivity extends AppCompatActivity implements
 
         memeView.setImageDrawable(res.getDrawable(resourceId));
     }
-public void setCityNameText(String cityNameText) {
-        this.cityNameText.setText(cityNameText);
-    }
+
+    public void setCityNameText(String cityNameText) {
+            this.cityNameText.setText(cityNameText);
+        }
 
     public void setTempText(String tempText) {
         this.tempText.setText(tempText);
@@ -68,6 +67,11 @@ public void setCityNameText(String cityNameText) {
 
     public void setWindText(String windText) {
         this.windText.setText(windText);
+    }
+
+    public void showToast(String message, int length) {
+        Toast toast = Toast.makeText(getApplicationContext(), message, length);
+        toast.show();
     }
 
     private TextView cityNameText;

@@ -83,8 +83,7 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
         } else {
-            //mainActivity.cityNameText.setText("Error: No Internet");
-            Toast.makeText(mainActivity.getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+            mainActivity.showToast("No Connection. Can't Get Weather Info", Toast.LENGTH_LONG);
         }
 
         if (jsonObject != null) {
