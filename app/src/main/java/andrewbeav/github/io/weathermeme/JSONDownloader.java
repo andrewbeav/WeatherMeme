@@ -90,20 +90,20 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
         if (jsonObject != null) {
             this.weatherInfo = new WeatherInfo(jsonObject);
 
-            mainActivity.cityNameText.setText(weatherInfo.getCityName());
-            mainActivity.tempText.setText(String.valueOf(weatherInfo.getTemperature()) + (char) 0x00B0 + "F");
-            mainActivity.humidityText.setText("Humidity: " + String.valueOf(weatherInfo.getHumidity()) + "%");
+            mainActivity.setCityNameText(weatherInfo.getCityName());
+            mainActivity.setTempText(String.valueOf(weatherInfo.getTemperature()));
+            mainActivity.setHumidityText("Humidity: " + String.valueOf(weatherInfo.getHumidity()) + "%");
 
             if (weatherInfo.getMain().equals("Rain")) {
-                mainActivity.rainText.setText(weatherInfo.getMainDescription());
+                mainActivity.setRainText(weatherInfo.getMainDescription());
             } else {
-                mainActivity.rainText.setText("No Rain");
+                mainActivity.setRainText("No Rain");
             }
 
             if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {
-                mainActivity.windText.setText("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
+                mainActivity.setWindText("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
             } else {
-                mainActivity.windText.setText("No Wind");
+                mainActivity.setWindText("No Wind");
             }
 
             WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);
