@@ -49,24 +49,32 @@ public class MainActivity extends AppCompatActivity implements
         memeView.setImageDrawable(res.getDrawable(resourceId));
     }
 
-    public void setCityNameText(String cityNameText) {
-            this.cityNameText.setText(cityNameText);
+    public void updateCityName(String cityName) {
+            this.cityNameText.setText(cityName);
         }
 
-    public void setTempText(String tempText) {
-        this.tempText.setText(tempText);
+    public void updateTemp(double temp) {
+        this.tempText.setText(temp + ((char) 0x00B0 + "F"));
     }
 
-    public void setHumidityText(String humidityText) {
-        this.humidityText.setText(humidityText);
+    public void updateHumidity(double humidity) {
+        this.humidityText.setText("Humidity: " + humidity + "%");
     }
 
-    public void setRainText(String rainText) {
-        this.rainText.setText(rainText);
+    public void noRain() {
+        this.rainText.setText("No Rain");
     }
 
-    public void setWindText(String windText) {
+    public void updateRain(String rainDescription) {
+        this.rainText.setText(rainDescription);
+    }
+
+    public void updateWind(String windText) {
         this.windText.setText(windText);
+    }
+
+    public void noWind() {
+        this.windText.setText("No Wind");
     }
 
     public void showToast(String message, int length) {

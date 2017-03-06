@@ -89,20 +89,20 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
         if (jsonObject != null) {
             this.weatherInfo = new WeatherInfo(jsonObject);
 
-            mainActivity.setCityNameText(weatherInfo.getCityName());
-            mainActivity.setTempText(String.valueOf(weatherInfo.getTemperature()));
-            mainActivity.setHumidityText("Humidity: " + String.valueOf(weatherInfo.getHumidity()) + "%");
+            mainActivity.updateCityName(weatherInfo.getCityName());
+            mainActivity.updateTemp(weatherInfo.getTemperature());
+            mainActivity.updateHumidity(weatherInfo.getHumidity());
 
             if (weatherInfo.getMain().equals("Rain")) {
-                mainActivity.setRainText(weatherInfo.getMainDescription());
+                mainActivity.updateRain(weatherInfo.getMainDescription());
             } else {
-                mainActivity.setRainText("No Rain");
+                mainActivity.noRain();
             }
 
             if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {
-                mainActivity.setWindText("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
+                mainActivity.updateWind("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
             } else {
-                mainActivity.setWindText("No Wind");
+                mainActivity.noWind();
             }
 
             WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);
