@@ -50,15 +50,32 @@ public class MainActivity extends AppCompatActivity implements
 
         memeView.setImageDrawable(res.getDrawable(resourceId));
     }
+public void setCityNameText(String cityNameText) {
+        this.cityNameText.setText(cityNameText);
+    }
 
-    public TextView cityNameText;
-    public TextView tempText;
-    public TextView humidityText;
-    public TextView lowTempText;
-    public TextView highTempText;
-    public TextView windText;
-    public TextView rainText;
-    public ImageView memeView;
+    public void setTempText(String tempText) {
+        this.tempText.setText(tempText);
+    }
+
+    public void setHumidityText(String humidityText) {
+        this.humidityText.setText(humidityText);
+    }
+
+    public void setRainText(String rainText) {
+        this.rainText.setText(rainText);
+    }
+
+    public void setWindText(String windText) {
+        this.windText.setText(windText);
+    }
+
+    private TextView cityNameText;
+    private TextView tempText;
+    private TextView humidityText;
+    private TextView windText;
+    private TextView rainText;
+    private ImageView memeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
