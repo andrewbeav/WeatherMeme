@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.android.gms.awareness.state.Weather;
 
@@ -74,8 +75,19 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
 
-        try {
-            JSONObject jsonObject = new JSONObject(result);
+        JSONObject jsonObject = null;
+        if (result != null) {
+            try {
+                jsonObject = new JSONObject(result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            //mainActivity.cityNameText.setText("Error: No Internet");
+            Toast.makeText(mainActivity.getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+        }
+
+        if (jsonObject != null) {
             this.weatherInfo = new WeatherInfo(jsonObject);
 
             mainActivity.cityNameText.setText(weatherInfo.getCityName());
@@ -97,8 +109,6 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
             WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);
             mainActivity.setMeme(memeGenerator.getImageTitle());
 
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 }
