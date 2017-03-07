@@ -76,8 +76,8 @@
             android:layout_height="wrap_content"
         />
         <TextView
-            android:id="@+id/rain_text"
-            android:text="@string/rain_default"
+            android:id="@+id/weather_description_text"
+            android:text="@string/weather_description_default"
             android:textSize="20dp"
             android:layout_row="1"
             android:layout_column="1"

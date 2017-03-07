@@ -5,6 +5,6 @@
     <string name="humidity_default">Humidity: </string>
     <string name="cloud_text_default">Cloudiness: </string>
     <string name="wind_default">Wind: </string>
-    <string name="rain_default">Rain Volume: </string>
+    <string name="weather_description_default">Weather</string>
     <string name="refresh_button_text">Refresh</string>
 </resources>

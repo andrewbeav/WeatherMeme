@@ -93,10 +93,10 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
             mainActivity.updateTemp(weatherInfo.getTemperature());
             mainActivity.updateHumidity(weatherInfo.getHumidity());
 
-            if (weatherInfo.getMain().equals("Rain")) {
-                mainActivity.updateRain(weatherInfo.getMainDescription());
+            if (weatherInfo.getMain() != null) {
+                mainActivity.updateDescription(weatherInfo.getMainDescription());
             } else {
-                mainActivity.noRain();
+                mainActivity.noDescription();
             }
 
             if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {

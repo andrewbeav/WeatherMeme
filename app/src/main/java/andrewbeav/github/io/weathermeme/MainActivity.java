@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity implements
         this.humidityText.setText("Humidity: " + humidity + "%");
     }
 
-    public void noRain() {
-        this.rainText.setText("No Rain");
+    public void noDescription() {
+        this.weatherDescriptionText.setText(null);
     }
 
-    public void updateRain(String rainDescription) {
-        this.rainText.setText(rainDescription);
+    public void updateDescription(String weatherDescription) {
+        this.weatherDescriptionText.setText(weatherDescription);
     }
 
     public void updateWind(String windText) {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements
     private TextView tempText;
     private TextView humidityText;
     private TextView windText;
-    private TextView rainText;
+    private TextView weatherDescriptionText;
     private ImageView memeView;
 
     @Override
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements
         humidityText = (TextView) findViewById(R.id.humidity_text);
         cityNameText = (TextView) findViewById(R.id.cityNameView);
         windText = (TextView) findViewById(R.id.wind_text);
-        rainText = (TextView) findViewById(R.id.rain_text);
+        weatherDescriptionText = (TextView) findViewById(R.id.weather_description_text);
         memeView = (ImageView) findViewById(R.id.memeView);
 
         if (mGoogleApiClient == null) {
