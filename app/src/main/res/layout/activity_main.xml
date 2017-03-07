@@ -13,7 +13,7 @@
     <ImageView
         android:id="@+id/memeView"
         android:layout_width="match_parent"
-        android:layout_height="250sp"
+        android:layout_height="250dp"
         android:src="@drawable/main_image"
     />
 
@@ -21,14 +21,16 @@
         android:id="@+id/cityNameView"
         android:layout_below="@+id/memeView"
         android:text="@string/city_default_text"
-        android:textSize="50sp"
+        android:textSize="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/refresh_button"
+        android:layout_toEndOf="@+id/cityNameView"
         android:layout_toRightOf="@+id/cityNameView"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="15sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/memeView"
         android:text="@string/refresh_button_text"
         android:onClick="refreshWeather"
@@ -39,13 +41,13 @@
         android:id="@+id/weather_info_layout"
         android:layout_below="@+id/cityNameView"
         android:layout_width="match_parent"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="30dp"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/temp_text"
             android:text="@string/temp_default"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_margin="10dp"
@@ -55,7 +57,7 @@
         <TextView
             android:id="@+id/humidity_text"
             android:text="@string/humidity_default"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:layout_margin="10dp"
             android:layout_row="0"
             android:layout_column="1"
@@ -66,7 +68,7 @@
         <TextView
             android:id="@+id/wind_text"
             android:text="@string/wind_default"
-            android:textSize="20sp"
+            android:textSize="20dp"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_margin="10dp"
@@ -79,7 +81,7 @@
             android:textSize="20dp"
             android:layout_row="1"
             android:layout_column="1"
-            android:layout_margin="10sp"
+            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
         />
