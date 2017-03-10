@@ -9,6 +9,8 @@ public class WeatherMemeGenerator {
     public static final int COLD_TRESHOLD = 40;
     public static final int CHILLY_TRESHOLD = 60;
     public static final int WIND_TRESHOLD = 20;
+    public static final int RAIN_CODE = 500;
+    public static final int THUNDERSTORM_CODE = 200;
 
     private WeatherInfo weatherInfo;
 
@@ -20,7 +22,7 @@ public class WeatherMemeGenerator {
         int rand = (int)(Math.random()*5) + 1;
         String result = "";
 
-        if (weatherInfo.getMain().equals("Rain")) {
+        if (weatherInfo.getWeatherCode() >= THUNDERSTORM_CODE && weatherInfo.getWeatherCode() < RAIN_CODE + 100) {
             result = "rain" + rand;
         }
         else {
