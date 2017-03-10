@@ -21,17 +21,13 @@
         android:id="@+id/cityNameView"
         android:layout_below="@+id/memeView"
         android:text="@string/city_default_text"
-        android:textSize="50dp"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/refresh_button"
-        android:layout_toEndOf="@+id/cityNameView"
-        android:layout_toRightOf="@+id/cityNameView"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:layout_below="@+id/memeView"
+        android:layout_below="@+id/cityNameView"
         android:text="@string/refresh_button_text"
         android:onClick="refreshWeather"
         android:layout_width="wrap_content"
@@ -39,7 +35,7 @@
 
     <GridLayout
         android:id="@+id/weather_info_layout"
-        android:layout_below="@+id/cityNameView"
+        android:layout_below="@+id/refresh_button"
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="match_parent">
