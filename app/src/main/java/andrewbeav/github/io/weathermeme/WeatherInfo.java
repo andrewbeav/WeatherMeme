@@ -22,6 +22,8 @@ public class WeatherInfo {
     private double temperature, pressure, humidity, windSpeed, windDeg;
     private String name, main, mainDescription;
 
+    private int weatherCode;
+
     public WeatherInfo(JSONObject weatherJSON) {
         this.weatherJSON = weatherJSON;
 
@@ -45,6 +47,7 @@ public class WeatherInfo {
                 JSONObject first = weatherArray.getJSONObject(0);
                 this.main = first.getString("main");
                 this.mainDescription = first.getString("description");
+                this.weatherCode = Integer.parseInt(first.getString("id"));
             } catch (JSONException e) {
                 this.main = null;
                 this.mainDescription = null;
@@ -57,6 +60,10 @@ public class WeatherInfo {
 
     public int getTemperature() {
         return (int)this.temperature;
+    }
+
+    public int getWeatherCode() {
+        return this.weatherCode;
     }
 
     public double getPressure() {
