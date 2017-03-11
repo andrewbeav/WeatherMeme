@@ -10,6 +10,7 @@ public class WeatherMemeGenerator {
     public static final int CHILLY_TRESHOLD = 60;
     public static final int WIND_TRESHOLD = 20;
     public static final int RAIN_CODE = 500;
+    public static final int SNOW_CODE = 600;
     public static final int THUNDERSTORM_CODE = 200;
 
     private WeatherInfo weatherInfo;
@@ -24,6 +25,9 @@ public class WeatherMemeGenerator {
 
         if (weatherInfo.getWeatherCode() >= THUNDERSTORM_CODE && weatherInfo.getWeatherCode() < RAIN_CODE + 100) {
             result = "rain" + rand;
+        }
+        else if (weatherInfo.getWeatherCode() >= SNOW_CODE && weatherInfo.getWeatherCode() < SNOW_CODE + 100) {
+            result = "snow" + rand;
         }
         else if (weatherInfo.getWindSpeed() > WIND_TRESHOLD) {
                 result = "wind" + rand;
