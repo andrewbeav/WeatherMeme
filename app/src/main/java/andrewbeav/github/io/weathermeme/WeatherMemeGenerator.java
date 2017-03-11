@@ -26,7 +26,7 @@ public class WeatherMemeGenerator {
         if (weatherInfo.getWeatherCode() >= THUNDERSTORM_CODE && weatherInfo.getWeatherCode() < RAIN_CODE + 100) {
             result = "rain" + rand;
         }
-        else if (weatherInfo.getWeatherCode() >= SNOW_CODE && < SNOW_CODE + 100) {
+        else if (weatherInfo.getWeatherCode() >= SNOW_CODE && weatherInfo.getWeatherCode() < SNOW_CODE + 100) {
             result = "snow" + rand;
         }
         else if (weatherInfo.getWindSpeed() > WIND_TRESHOLD) {
