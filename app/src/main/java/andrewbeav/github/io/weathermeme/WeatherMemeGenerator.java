@@ -25,24 +25,20 @@ public class WeatherMemeGenerator {
         if (weatherInfo.getWeatherCode() >= THUNDERSTORM_CODE && weatherInfo.getWeatherCode() < RAIN_CODE + 100) {
             result = "rain" + rand;
         }
-        else {
-            if (weatherInfo.getWindSpeed() > WIND_TRESHOLD) {
+        else if (weatherInfo.getWindSpeed() > WIND_TRESHOLD) {
                 result = "wind" + rand;
-            }
-            else {
-                if (weatherInfo.getTemperature() > HOT_TRESHOLD) {
-                    result = "hot_weather" + rand;
-                }
-                else if (weatherInfo.getTemperature() < COLD_TRESHOLD) {
-                    result = "cold_weather" + rand;
-                }
-                else if (weatherInfo.getTemperature() < CHILLY_TRESHOLD) {
-                    result = "chilly" + rand;
-                }
-                else {
-                    result = "neutral" + rand;
-                }
-            }
+        }
+        else if (weatherInfo.getTemperature() > HOT_TRESHOLD) {
+            result = "hot_weather" + rand;
+        }
+        else if (weatherInfo.getTemperature() < COLD_TRESHOLD) {
+            result = "cold_weather" + rand;
+        }
+        else if (weatherInfo.getTemperature() < CHILLY_TRESHOLD) {
+            result = "chilly" + rand;
+        }
+        else {
+            result = "neutral" + rand;
         }
 
         return result;
