@@ -39,8 +39,8 @@ class EditLocationPopup extends Activity {
 
     public void submitLocation(View view) {
         Intent intent = new Intent();
-        intent.putExtra("Location", locationText.getText());
-        setResult(RESULT_OK);
+        intent.putExtra("Location", locationText.getText().toString());
+        setResult(RESULT_OK, intent);
         finish();
     }
 

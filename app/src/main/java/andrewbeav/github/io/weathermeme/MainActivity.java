@@ -33,6 +33,12 @@ public class MainActivity extends AppCompatActivity implements
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
 
+    public static final int USE_CURRENT_LOCATION = 1;
+    public static final int USE_CUSTOM_LOCATION = 2;
+
+    private int locationType = USE_CURRENT_LOCATION;
+    private String customLocation;
+
     protected void onStart() {
         mGoogleApiClient.connect();
         super.onStart();
@@ -117,24 +123,29 @@ public class MainActivity extends AppCompatActivity implements
 
     public void onConnected(Bundle connectionHint) {
         JSONDownloader jsonDownloader = new JSONDownloader(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+        if (locationType == USE_CURRENT_LOCATION) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                    mGoogleApiClient);
+            if (mLastLocation != null) {
+                latitude = mLastLocation.getLatitude();
+                longitude = mLastLocation.getLongitude();
+                jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+            }
+            //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=Springfield,mo&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
         }
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-            latitude = mLastLocation.getLatitude();
-            longitude = mLastLocation.getLongitude();
-            jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+        else if (locationType == USE_CUSTOM_LOCATION && customLocation != null) {
+            jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=" + customLocation + "&units=imperial&appid=bcf98db996d2d93497a184c6af4c3c7a");
         }
-        //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=Springfield,mo&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
     }
 
     public void editLocation(View view) {
@@ -144,7 +155,15 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == EditLocationPopup.REQUEST_CODE && resultCode == RESULT_OK) {
-            // Process location stuff...
+            if (data.getStringExtra("Location") != null) {
+                locationType = USE_CUSTOM_LOCATION;
+                customLocation = data.getStringExtra("Location");
+                JSONDownloader jsonDownloader = new JSONDownloader(this);
+                jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=" + customLocation + "&units=imperial&appid=bcf98db996d2d93497a184c6af4c3c7a");
+            }
+            else {
+                locationType = USE_CURRENT_LOCATION;
+            }
         }
     }
 
