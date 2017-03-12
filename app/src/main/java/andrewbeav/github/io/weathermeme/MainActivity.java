@@ -138,7 +138,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void editLocation(View view) {
-        startActivity(new Intent(MainActivity.this, EditLocationPopup.class));
+        startActivityForResult(new Intent(MainActivity.this, EditLocationPopup.class), EditLocationPopup.REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == EditLocationPopup.REQUEST_CODE && resultCode == RESULT_OK) {
+            // Process location stuff...
+        }
     }
 
     public void refreshWeather(View view) {

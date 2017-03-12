@@ -19,6 +19,7 @@
             android:id="@+id/submit_location_button"
             android:layout_margin="20dp"
             android:text="@string/submit_location_text"
+            android:onClick="submitLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -28,6 +29,7 @@
             android:layout_marginBottom="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
+            android:onClick="useCurrentLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
