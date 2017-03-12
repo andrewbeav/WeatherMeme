@@ -150,14 +150,15 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == EditLocationPopup.REQUEST_CODE && resultCode == RESULT_OK) {
-            if (data.getStringExtra("Location") != null) {
+            JSONDownloader jsonDownloader = new JSONDownloader(this);
+            if (!data.getStringExtra("Location").equals("CURRENT_LOCATION")) {
                 locationType = USE_CUSTOM_LOCATION;
                 customLocation = data.getStringExtra("Location");
-                JSONDownloader jsonDownloader = new JSONDownloader(this);
                 jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=" + customLocation + "&units=imperial&appid=bcf98db996d2d93497a184c6af4c3c7a");
             }
             else {
                 locationType = USE_CURRENT_LOCATION;
+                jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
             }
         }
     }

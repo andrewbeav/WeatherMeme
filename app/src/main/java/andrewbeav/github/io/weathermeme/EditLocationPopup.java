@@ -45,6 +45,9 @@ class EditLocationPopup extends Activity {
     }
 
     public void useCurrentLocation(View view) {
-
+        Intent intent = new Intent();
+        intent.putExtra("Location", "CURRENT_LOCATION");
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
