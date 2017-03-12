@@ -17,6 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".EditLocationPopup" android:theme="@style/AppTheme.EditLocationTheme">
+        </activity>
     </application>
 
 </manifest>

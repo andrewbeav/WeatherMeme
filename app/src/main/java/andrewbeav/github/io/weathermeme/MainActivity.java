@@ -3,6 +3,7 @@ package andrewbeav.github.io.weathermeme;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity implements
 
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+
+    public static final int USE_CURRENT_LOCATION = 1;
+    public static final int USE_CUSTOM_LOCATION = 2;
+
+    private int locationType = USE_CURRENT_LOCATION;
+    private String customLocation;
 
     protected void onStart() {
         mGoogleApiClient.connect();
@@ -136,11 +143,35 @@ public class MainActivity extends AppCompatActivity implements
         //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=Springfield,mo&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
     }
 
+    public void editLocation(View view) {
+        startActivityForResult(new Intent(MainActivity.this, EditLocationPopup.class), EditLocationPopup.REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == EditLocationPopup.REQUEST_CODE && resultCode == RESULT_OK) {
+            JSONDownloader jsonDownloader = new JSONDownloader(this);
+            if (!data.getStringExtra("Location").equals("CURRENT_LOCATION")) {
+                locationType = USE_CUSTOM_LOCATION;
+                customLocation = data.getStringExtra("Location");
+                jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=" + customLocation + "&units=imperial&appid=bcf98db996d2d93497a184c6af4c3c7a");
+            }
+            else {
+                locationType = USE_CURRENT_LOCATION;
+                jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+            }
+        }
+    }
+
     public void refreshWeather(View view) {
         JSONDownloader jsonDownloader = new JSONDownloader(this);
-        jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
 
-        //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=Springfield,mo&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+        if (locationType == USE_CURRENT_LOCATION) {
+            jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+        }
+        else if (locationType == USE_CUSTOM_LOCATION && customLocation != null) {
+            jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=" + customLocation + "&units=imperial&appid=bcf98db996d2d93497a184c6af4c3c7a");
+        }
     }
 
     @Override
