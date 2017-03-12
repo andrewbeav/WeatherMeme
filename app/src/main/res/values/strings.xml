@@ -7,4 +7,5 @@
     <string name="wind_default">Wind: </string>
     <string name="weather_description_default">Weather</string>
     <string name="refresh_button_text">Refresh</string>
+    <string name="edit_location_text">Edit Location</string>
 </resources>
