@@ -3,6 +3,7 @@ package andrewbeav.github.io.weathermeme;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void editLocation(View view) {
-
+        startActivity(new Intent(MainActivity.this, EditLocationPopup.class));
     }
 
     public void refreshWeather(View view) {
