@@ -18,8 +18,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".EditLocationPopup" >
-
+        <activity android:name=".EditLocationPopup" android:theme="@style/AppTheme.EditLocationTheme">
         </activity>
     </application>
 
