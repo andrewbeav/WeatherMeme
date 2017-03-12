@@ -11,7 +11,7 @@ import android.util.DisplayMetrics;
 
 class EditLocationPopup extends Activity {
     public static final double WIDTH_PERCENT = 0.8;
-    public static final double HEIGHT_PERCENT = 0.8;
+    public static final double HEIGHT_PERCENT = 0.4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -6,6 +6,7 @@
     <EditText
         android:id="@+id/location_text"
         android:hint="@string/location_text_view_text"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
