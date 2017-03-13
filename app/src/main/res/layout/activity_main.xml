@@ -17,17 +17,10 @@
         android:src="@drawable/main_image"
     />
 
-    <TextView
-        android:id="@+id/cityNameView"
-        android:layout_below="@+id/memeView"
-        android:text="@string/city_default_text"
-        android:textSize="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/refresh_button"
         android:layout_marginTop="15dp"
-        android:layout_below="@+id/cityNameView"
+        android:layout_below="@+id/memeView"
         android:text="@string/refresh_button_text"
         android:onClick="refreshWeather"
         android:layout_width="wrap_content"
@@ -36,7 +29,7 @@
         android:id="@+id/edit_location_button"
         android:layout_toRightOf="@+id/refresh_button"
         android:layout_toEndOf="@+id/refresh_button"
-        android:layout_below="@+id/cityNameView"
+        android:layout_below="@+id/memeView"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:onClick="editLocation"

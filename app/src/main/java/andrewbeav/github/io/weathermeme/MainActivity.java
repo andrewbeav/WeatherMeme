@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void updateCityName(String cityName) {
-            this.cityNameText.setText(cityName);
+            this.setTitle(cityName);
         }
 
     public void updateTemp(double temp) {
@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements
         toast.show();
     }
 
-    private TextView cityNameText;
     private TextView tempText;
     private TextView humidityText;
     private TextView windText;
@@ -103,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements
 
         tempText = (TextView) findViewById(R.id.temp_text);
         humidityText = (TextView) findViewById(R.id.humidity_text);
-        cityNameText = (TextView) findViewById(R.id.cityNameView);
         windText = (TextView) findViewById(R.id.wind_text);
         weatherDescriptionText = (TextView) findViewById(R.id.weather_description_text);
         memeView = (ImageView) findViewById(R.id.memeView);
@@ -116,8 +114,6 @@ public class MainActivity extends AppCompatActivity implements
                     .build();
         }
     }
-
-
 
     private double latitude, longitude;
 
