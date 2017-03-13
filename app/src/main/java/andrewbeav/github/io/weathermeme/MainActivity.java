@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public void updateCityName(String cityName) {
             this.setTitle(cityName);
-        }
+    }
 
     public void updateTemp(double temp) {
         this.tempText.setText(temp + ((char) 0x00B0 + "F"));
