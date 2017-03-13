@@ -18,31 +18,38 @@
         android:src="@drawable/main_image"
     />
 
-    <Button
-        android:id="@+id/refresh_button"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/memeView"
-        android:text="@string/refresh_button_text"
-        android:onClick="refreshWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/edit_location_button"
-        android:layout_toRightOf="@+id/refresh_button"
-        android:layout_toEndOf="@+id/refresh_button"
+        android:background="@color/activity_main_button_color"
+        android:textColor="@color/activity_main_button_text_color"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/memeView"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:onClick="editLocation"
         android:text="@string/edit_location_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <Button
+        android:id="@+id/refresh_button"
+        android:background="@color/activity_main_button_color"
+        android:textColor="@color/activity_main_button_text_color"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/refresh_button_text"
+        android:onClick="refreshWeather"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
 
     <GridLayout
         android:id="@+id/weather_info_layout"
-        android:layout_below="@+id/refresh_button"
+        android:layout_below="@+id/edit_location_button"
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_height="match_parent">
 
         <TextView
