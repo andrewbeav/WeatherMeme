@@ -37,4 +37,12 @@ public class DetailedWeatherFragment extends Fragment {
         return view;
     }
 
+    public void setupWithWeatherInfo(WeatherInfo weatherInfo) {
+        tempView.setText(weatherInfo.getTemperature());
+        humidityView.setText(String.valueOf(weatherInfo.getHumidity()));
+        pressureView.setText(String.valueOf(weatherInfo.getPressure()));
+        windView.setText(String.valueOf(weatherInfo.getWindSpeed()));
+        windDirectionView.setText(weatherInfo.getWindDirection());
+    }
+
 }
