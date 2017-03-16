@@ -9,18 +9,104 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <GridLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/detailed_temp_text"
-                android:layout_column="0"
+                android:text="@string/detailed_temp_default"
+                android:layout_margin="10dp"
+                android:textSize="30dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-            />
+                android:layout_height="wrap_content" />
 
-        </GridLayout>
+            <TextView
+                android:id="@+id/detailed_temp_value"
+                android:text="@string/temp_default"
+                android:layout_margin="10dp"
+                android:textSize="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_humidity_text"
+                android:text="@string/detailed_humidity_default"
+                android:textSize="30dp"
+                android:layout_below="@+id/detailed_temp_text"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_humidity_value"
+                android:text="@string/detailed_humidity_value_default"
+                android:textSize="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/detailed_temp_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_pressure_text"
+                android:text="@string/detailed_pressure_default"
+                android:textSize="30dp"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/detailed_humidity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_pressure_value"
+                android:text="@string/detailed_pressure_value_default"
+                android:textSize="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/detailed_humidity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_wind_text"
+                android:text="@string/detailed_humidity_default"
+                android:textSize="30dp"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/detailed_pressure_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_wind_default"
+                android:text="@string/detailed_wind_value_default"
+                android:textSize="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/detailed_pressure_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_wind_direction_text"
+                android:text="@string/detailed_wind_direction_default"
+                android:textSize="30dp"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/detailed_wind_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/detailed_wind_direction_value"
+                android:text="@string/detailed_wind_direction_value_default"
+                android:textSize="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/detailed_wind_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
     </ScrollView>
 </RelativeLayout>
