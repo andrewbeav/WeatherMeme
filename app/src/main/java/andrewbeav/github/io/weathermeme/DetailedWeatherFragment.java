@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -18,12 +19,16 @@ public class DetailedWeatherFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private TextView tempView, humidityView, pressureView, windView, windDirectionView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_detailed_weather, container, false);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detailed_weather, container, false);
+        return view;
     }
 
 }

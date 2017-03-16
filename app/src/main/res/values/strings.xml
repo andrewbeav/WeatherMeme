@@ -20,4 +20,5 @@
     <string name="detailed_wind_value_default">0mph</string>
     <string name="detailed_wind_direction_default">Wind Direction:</string>
     <string name="detailed_wind_direction_value_default">North</string>
+    <string name="detailed_wind_default">Wind Speed:</string>
 </resources>

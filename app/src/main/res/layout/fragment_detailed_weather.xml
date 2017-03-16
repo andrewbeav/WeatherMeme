@@ -70,7 +70,7 @@
 
             <TextView
                 android:id="@+id/detailed_wind_text"
-                android:text="@string/detailed_humidity_default"
+                android:text="@string/detailed_wind_default"
                 android:textSize="30dp"
                 android:layout_margin="10dp"
                 android:layout_below="@+id/detailed_pressure_text"
