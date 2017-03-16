@@ -27,6 +27,12 @@ public class DetailedWeatherFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_detailed_weather, container, false);
 
+        tempView = (TextView) view.findViewById(R.id.detailed_temp_value);
+        humidityView = (TextView) view.findViewById(R.id.detailed_humidity_value);
+        pressureView = (TextView) view.findViewById(R.id.detailed_pressure_value);
+        windView = (TextView) view.findViewById(R.id.detailed_wind_value);
+        windDirectionView = (TextView) view.findViewById(R.id.detailed_wind_direction_value);
+
         // Inflate the layout for this fragment
         return view;
     }
