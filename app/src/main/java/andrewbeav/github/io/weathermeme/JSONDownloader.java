@@ -1,6 +1,7 @@
 package andrewbeav.github.io.weathermeme;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -59,13 +60,11 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
 
     private WeatherInfo weatherInfo;
 
-    public WeatherInfo getWeatherInfo() {
-        return this.weatherInfo;
-    }
-
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+
+        Log.i("Aysnc", "in on post execute");
 
         JSONObject jsonObject = null;
         if (result != null) {
@@ -80,26 +79,11 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
 
         if (jsonObject != null) {
             this.weatherInfo = new WeatherInfo(jsonObject);
-
-            memePageFragment.updateCityName(weatherInfo.getCityName());
-            memePageFragment.updateTemp(weatherInfo.getTemperature());
-            memePageFragment.updateHumidity(weatherInfo.getHumidity());
-
-            if (weatherInfo.getMain() != null) {
-                memePageFragment.updateDescription(weatherInfo.getMainDescription());
-            } else {
-                memePageFragment.noDescription();
-            }
-
-            if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {
-                memePageFragment.updateWind("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
-            } else {
-                memePageFragment.noWind();
-            }
-
-            WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);
-            memePageFragment.setMeme(memeGenerator.getImageTitle());
-
+            memePageFragment.populateWithWeatherInfo(weatherInfo);
         }
+    }
+
+    public WeatherInfo getWeatherInfo() {
+        return this.weatherInfo;
     }
 }

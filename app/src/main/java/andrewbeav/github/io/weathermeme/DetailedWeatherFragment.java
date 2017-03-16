@@ -14,7 +14,6 @@ import android.widget.TextView;
  */
 public class DetailedWeatherFragment extends Fragment {
 
-
     public DetailedWeatherFragment() {
         // Required empty public constructor
     }

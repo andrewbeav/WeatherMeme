@@ -1,10 +1,11 @@
 package andrewbeav.github.io.weathermeme;
 
-
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.R.attr.delay;
 import static android.app.Activity.RESULT_OK;
 
 /**
@@ -75,9 +77,13 @@ public class MemePageFragment extends Fragment {
 
     private double latitude, longitude;
 
+    private WeatherInfo weatherInfo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.i("Andrew", "onCreateView");
 
         Bundle bundle = getArguments();
         this.latitude = bundle.getDouble("Latitude");
@@ -115,12 +121,33 @@ public class MemePageFragment extends Fragment {
         return view;
     }
 
+    public void populateWithWeatherInfo(WeatherInfo weatherInfo) {
+            updateCityName(weatherInfo.getCityName());
+            updateTemp(weatherInfo.getTemperature());
+            updateHumidity(weatherInfo.getHumidity());
+
+            if (weatherInfo.getMain() != null) {
+                updateDescription(weatherInfo.getMainDescription());
+            } else {
+                noDescription();
+            }
+
+            if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {
+                updateWind("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
+            } else {
+                noWind();
+            }
+
+            WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);
+            setMeme(memeGenerator.getImageTitle());
+    }
+
+
     public static final int USE_CURRENT_LOCATION = 1;
     public static final int USE_CUSTOM_LOCATION = 2;
 
     private int locationType = USE_CURRENT_LOCATION;
     private String customLocation;
-
 
     public void refreshWeather(View view) {
         JSONDownloader jsonDownloader = new JSONDownloader(this);
