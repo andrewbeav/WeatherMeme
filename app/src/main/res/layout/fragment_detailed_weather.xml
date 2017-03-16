@@ -5,4 +5,22 @@
     android:layout_height="match_parent"
     tools:context="andrewbeav.github.io.weathermeme.DetailedWeatherFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/detailed_temp_text"
+                android:layout_column="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+
+        </GridLayout>
+
+    </ScrollView>
 </RelativeLayout>
