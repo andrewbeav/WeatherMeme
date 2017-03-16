@@ -1,4 +1,4 @@
-package layout;
+package andrewbeav.github.io.weathermeme;
 
 
 import android.Manifest;
@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,6 +87,9 @@ public class MemePageFragment extends Fragment implements
     private TextView weatherDescriptionText;
     private ImageView memeView;
 
+    private Button refreshButton;
+    private Button editLocationButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,6 +101,24 @@ public class MemePageFragment extends Fragment implements
         windText = (TextView) view.findViewById(R.id.wind_text);
         weatherDescriptionText = (TextView) view.findViewById(R.id.weather_description_text);
         memeView = (ImageView) view.findViewById(R.id.memeView);
+
+        refreshButton = (Button) view.findViewById(R.id.refresh_button);
+        editLocationButton = (Button) view.findViewById(R.id.edit_location_button);
+
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refreshWeather(v);
+            }
+        });
+
+        editLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editLocation(v);
+            }
+        });
+
 
         // Inflate the layout for this fragment
         return view;

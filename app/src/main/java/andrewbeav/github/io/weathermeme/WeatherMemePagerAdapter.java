@@ -4,8 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import layout.MemePageFragment;
-
 /**
  * Created by andrewbeav on 3/16/17.
  */

@@ -13,8 +13,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import layout.MemePageFragment;
-
 /**
  * Created by andrewbeav on 3/3/17.
  */
