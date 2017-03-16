@@ -18,6 +18,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import layout.MemePageFragment;
+
 import static android.content.Context.*;
 import static java.security.AccessController.getContext;
 
@@ -27,10 +29,10 @@ import static java.security.AccessController.getContext;
 
 public class JSONDownloader extends AsyncTask<String, Void, String> {
 
-    private final MainActivity mainActivity;
+    private final MemePageFragment memePageFragment;
 
-    public JSONDownloader(MainActivity activity) {
-        this.mainActivity = activity;
+    public JSONDownloader(MemePageFragment memePageFragment) {
+        this.memePageFragment = memePageFragment;
     }
 
     @Override
@@ -83,30 +85,30 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
         } else {
-            mainActivity.showToast("Something's Not Right. You Either Have No Internet Connection or an Invalid Custom Location", Toast.LENGTH_LONG);
+            memePageFragment.showToast("Something's Not Right. You Either Have No Internet Connection or an Invalid Custom Location", Toast.LENGTH_LONG);
         }
 
         if (jsonObject != null) {
             this.weatherInfo = new WeatherInfo(jsonObject);
 
-            mainActivity.updateCityName(weatherInfo.getCityName());
-            mainActivity.updateTemp(weatherInfo.getTemperature());
-            mainActivity.updateHumidity(weatherInfo.getHumidity());
+            memePageFragment.updateCityName(weatherInfo.getCityName());
+            memePageFragment.updateTemp(weatherInfo.getTemperature());
+            memePageFragment.updateHumidity(weatherInfo.getHumidity());
 
             if (weatherInfo.getMain() != null) {
-                mainActivity.updateDescription(weatherInfo.getMainDescription());
+                memePageFragment.updateDescription(weatherInfo.getMainDescription());
             } else {
-                mainActivity.noDescription();
+                memePageFragment.noDescription();
             }
 
             if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {
-                mainActivity.updateWind("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
+                memePageFragment.updateWind("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
             } else {
-                mainActivity.noWind();
+                memePageFragment.noWind();
             }
 
             WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);
-            mainActivity.setMeme(memeGenerator.getImageTitle());
+            memePageFragment.setMeme(memeGenerator.getImageTitle());
 
         }
     }

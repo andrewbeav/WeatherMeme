@@ -12,7 +12,7 @@ import android.widget.EditText;
  * Created by andrewbeav on 3/12/17.
  */
 
-class EditLocationPopup extends Activity {
+public class EditLocationPopup extends Activity {
     public static final int REQUEST_CODE = 888;
 
     public static final double WIDTH_PERCENT = 0.8;
