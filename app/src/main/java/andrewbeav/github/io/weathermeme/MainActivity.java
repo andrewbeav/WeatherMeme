@@ -1,5 +1,6 @@
 package andrewbeav.github.io.weathermeme;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new WeatherMemePagerAdapter(getSupportFragmentManager()));
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(pager);
     }
 
 }
