@@ -1,15 +1,9 @@
 package andrewbeav.github.io.weathermeme;
 
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,23 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
-
-import andrewbeav.github.io.weathermeme.JSONDownloader;
-import andrewbeav.github.io.weathermeme.MainActivity;
-import andrewbeav.github.io.weathermeme.EditLocationPopup;
-import andrewbeav.github.io.weathermeme.R;
-
 import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MemePageFragment extends Fragment implements
-        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-
+public class MemePageFragment extends Fragment {
 
     public MemePageFragment() {
         // Required empty public constructor
@@ -90,9 +73,15 @@ public class MemePageFragment extends Fragment implements
     private Button refreshButton;
     private Button editLocationButton;
 
+    private double latitude, longitude;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle bundle = getArguments();
+        this.latitude = bundle.getDouble("Latitude");
+        this.longitude = bundle.getDouble("Longitude");
 
         View view = inflater.inflate(R.layout.fragment_meme_page, container, false);
 
@@ -119,13 +108,12 @@ public class MemePageFragment extends Fragment implements
             }
         });
 
+        JSONDownloader jsonDownloader = new JSONDownloader(this);
+        jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
 
         // Inflate the layout for this fragment
         return view;
     }
-
-    GoogleApiClient mGoogleApiClient;
-    Location mLastLocation;
 
     public static final int USE_CURRENT_LOCATION = 1;
     public static final int USE_CUSTOM_LOCATION = 2;
@@ -133,52 +121,6 @@ public class MemePageFragment extends Fragment implements
     private int locationType = USE_CURRENT_LOCATION;
     private String customLocation;
 
-    private double latitude, longitude;
-
-    public void onStart() {
-        mGoogleApiClient.connect();
-        super.onStart();
-    }
-
-    public void onStop() {
-        mGoogleApiClient.disconnect();
-        super.onStop();
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-        }
-    }
-
-    public void onConnected(Bundle connectionHint) {
-        JSONDownloader jsonDownloader = new JSONDownloader(this);
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-            latitude = mLastLocation.getLatitude();
-            longitude = mLastLocation.getLongitude();
-            jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
-        }
-        //jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?q=Springfield,mo&units=imperial&&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
-    }
 
     public void refreshWeather(View view) {
         JSONDownloader jsonDownloader = new JSONDownloader(this);
@@ -209,14 +151,5 @@ public class MemePageFragment extends Fragment implements
                 jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
             }
         }
-    }
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 }
