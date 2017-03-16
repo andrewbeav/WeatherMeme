@@ -1,12 +1,7 @@
 package andrewbeav.github.io.weathermeme;
 
-import android.content.res.Resources;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
-import com.google.android.gms.awareness.state.Weather;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,9 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import layout.MemePageFragment;
-
-import static android.content.Context.*;
-import static java.security.AccessController.getContext;
 
 /**
  * Created by andrewbeav on 3/3/17.

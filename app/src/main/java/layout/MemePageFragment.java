@@ -90,14 +90,16 @@ public class MemePageFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        tempText = (TextView) getActivity().findViewById(R.id.temp_text);
-        humidityText = (TextView) getActivity().findViewById(R.id.humidity_text);
-        windText = (TextView) getActivity().findViewById(R.id.wind_text);
-        weatherDescriptionText = (TextView) getActivity().findViewById(R.id.weather_description_text);
-        memeView = (ImageView) getActivity().findViewById(R.id.memeView);
+        View view = inflater.inflate(R.layout.fragment_meme_page, container, false);
+
+        tempText = (TextView) view.findViewById(R.id.temp_text);
+        humidityText = (TextView) view.findViewById(R.id.humidity_text);
+        windText = (TextView) view.findViewById(R.id.wind_text);
+        weatherDescriptionText = (TextView) view.findViewById(R.id.weather_description_text);
+        memeView = (ImageView) view.findViewById(R.id.memeView);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meme_page, container, false);
+        return view;
     }
 
     GoogleApiClient mGoogleApiClient;
