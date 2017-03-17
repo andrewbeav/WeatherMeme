@@ -63,7 +63,23 @@ public class DetailedWeatherFragment extends Fragment {
         humidityView.setText(String.valueOf(weatherInfo.getHumidity()) + "%");
         pressureView.setText(String.valueOf(weatherInfo.getPressure()) + " hPa");
         windView.setText(String.valueOf(weatherInfo.getWindSpeed()) + " mph");
-        windDirectionView.setText(weatherInfo.getWindDirection());
+
+        String windDirection = "";
+
+        switch(weatherInfo.getWindDirection()) {
+            case "N":
+                windDirection = "North";
+                break;
+            case "S":
+                windDirection = "South";
+                break;
+            case "E":
+                windDirection = "East";
+                break;
+            case "W":
+                windDirection = "West";
+        }
+        windDirectionView.setText(windDirection);
     }
 
     public void showToast(String message, int length) {
