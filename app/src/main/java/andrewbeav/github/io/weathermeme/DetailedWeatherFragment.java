@@ -59,10 +59,10 @@ public class DetailedWeatherFragment extends Fragment {
     }
 
     public void populateWithWeatherInfo(WeatherInfo weatherInfo) {
-        tempView.setText(String.valueOf(weatherInfo.getTemperature()));
-        humidityView.setText(String.valueOf(weatherInfo.getHumidity()));
-        pressureView.setText(String.valueOf(weatherInfo.getPressure()));
-        windView.setText(String.valueOf(weatherInfo.getWindSpeed()));
+        tempView.setText(String.valueOf(weatherInfo.getTemperature()) + (char) 0x00B0 + "F");
+        humidityView.setText(String.valueOf(weatherInfo.getHumidity()) + "%");
+        pressureView.setText(String.valueOf(weatherInfo.getPressure()) + " hPa");
+        windView.setText(String.valueOf(weatherInfo.getWindSpeed()) + " mph");
         windDirectionView.setText(weatherInfo.getWindDirection());
     }
 
