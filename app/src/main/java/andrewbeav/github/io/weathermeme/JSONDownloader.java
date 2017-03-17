@@ -1,12 +1,8 @@
 package andrewbeav.github.io.weathermeme;
 
-import android.content.res.Resources;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
-
-import com.google.android.gms.awareness.state.Weather;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,19 +14,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static android.content.Context.*;
-import static java.security.AccessController.getContext;
-
 /**
  * Created by andrewbeav on 3/3/17.
  */
 
 public class JSONDownloader extends AsyncTask<String, Void, String> {
 
-    private final MainActivity mainActivity;
+    private final MemePageFragment memePageFragment;
 
-    public JSONDownloader(MainActivity activity) {
-        this.mainActivity = activity;
+    public JSONDownloader(MemePageFragment memePageFragment) {
+        this.memePageFragment = memePageFragment;
     }
 
     @Override
@@ -67,13 +60,11 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
 
     private WeatherInfo weatherInfo;
 
-    public WeatherInfo getWeatherInfo() {
-        return this.weatherInfo;
-    }
-
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
+
+        Log.i("Aysnc", "in on post execute");
 
         JSONObject jsonObject = null;
         if (result != null) {
@@ -83,31 +74,16 @@ public class JSONDownloader extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
         } else {
-            mainActivity.showToast("Something's Not Right. You Either Have No Internet Connection or an Invalid Custom Location", Toast.LENGTH_LONG);
+            memePageFragment.showToast("Something's Not Right. You Either Have No Internet Connection or an Invalid Custom Location", Toast.LENGTH_LONG);
         }
 
         if (jsonObject != null) {
             this.weatherInfo = new WeatherInfo(jsonObject);
-
-            mainActivity.updateCityName(weatherInfo.getCityName());
-            mainActivity.updateTemp(weatherInfo.getTemperature());
-            mainActivity.updateHumidity(weatherInfo.getHumidity());
-
-            if (weatherInfo.getMain() != null) {
-                mainActivity.updateDescription(weatherInfo.getMainDescription());
-            } else {
-                mainActivity.noDescription();
-            }
-
-            if (weatherInfo.getWindSpeed() != -1 && weatherInfo.getWindDirection() != null) {
-                mainActivity.updateWind("Wind: " + String.valueOf(weatherInfo.getWindSpeed()) + "mph, " + weatherInfo.getWindDirection());
-            } else {
-                mainActivity.noWind();
-            }
-
-            WeatherMemeGenerator memeGenerator = new WeatherMemeGenerator(weatherInfo);
-            mainActivity.setMeme(memeGenerator.getImageTitle());
-
+            memePageFragment.populateWithWeatherInfo(weatherInfo);
         }
+    }
+
+    public WeatherInfo getWeatherInfo() {
+        return this.weatherInfo;
     }
 }

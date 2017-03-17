@@ -6,5 +6,6 @@
     <color name="edit_location_popup_bgcolor">#91a3d6</color>
     <color name="activity_main_button_color">#0f1e51</color>
     <color name="activity_main_button_text_color">#bcbcbc</color>
+    <color name="main_bg_color">#ccdfff</color>
 
 </resources>

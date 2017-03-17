@@ -9,4 +9,16 @@
     <string name="location_text_view_text">Example: Stillwater,Ok</string>
     <string name="submit_location_text">Submit</string>
     <string name="use_current_location_text">Use Current Location</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detailed_temp_default">Temperature:</string>
+    <string name="detailed_humidity_default">Humidity:</string>
+    <string name="detailed_humidity_value_default">0%</string>
+    <string name="detailed_pressure_value_default">0 hPa</string>
+    <string name="detailed_pressure_default">Pressure:</string>
+    <string name="detailed_wind_value_default">0mph</string>
+    <string name="detailed_wind_direction_default">Wind Direction:</string>
+    <string name="detailed_wind_direction_value_default">North</string>
+    <string name="detailed_wind_default">Wind Speed:</string>
 </resources>
