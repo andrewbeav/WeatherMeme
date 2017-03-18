@@ -25,7 +25,7 @@ import java.net.URL;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailedWeatherFragment extends Fragment {
+public class DetailedWeatherFragment extends Fragment implements MainActivityFragment {
 
     public DetailedWeatherFragment() {
         // Required empty public constructor
@@ -51,13 +51,14 @@ public class DetailedWeatherFragment extends Fragment {
         windView = (TextView) view.findViewById(R.id.detailed_wind_value);
         windDirectionView = (TextView) view.findViewById(R.id.detailed_wind_direction_value);
 
-        DetailedWeatherJSONDownloader weatherInfoGetter = new DetailedWeatherJSONDownloader(this);
+        JSONDownloader weatherInfoGetter = new JSONDownloader(this);
         weatherInfoGetter.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
 
         // Inflate the layout for this fragment
         return view;
     }
 
+    @Override
     public void populateWithWeatherInfo(WeatherInfo weatherInfo) {
         tempView.setText(String.valueOf(weatherInfo.getTemperature()) + (char) 0x00B0 + "F");
         humidityView.setText(String.valueOf(weatherInfo.getHumidity()) + "%");

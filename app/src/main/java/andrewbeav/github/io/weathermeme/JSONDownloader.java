@@ -18,12 +18,12 @@ import java.net.URL;
  * Created by andrewbeav on 3/18/17.
  */
 
-public class MemePageJSONDownloader extends AsyncTask<String, Void, WeatherInfo> {
+public class JSONDownloader extends AsyncTask<String, Void, WeatherInfo> {
 
-    private final WeakReference<MemePageFragment> weakMemePageFragment;
+    WeakReference<MainActivityFragment> weakFragment;
 
-    public MemePageJSONDownloader(MemePageFragment memePageFragment) {
-        this.weakMemePageFragment = new WeakReference<MemePageFragment>(memePageFragment);
+    public JSONDownloader(MainActivityFragment fragment) {
+        this.weakFragment = new WeakReference<MainActivityFragment>(fragment);
     }
 
     @Override
@@ -31,8 +31,6 @@ public class MemePageJSONDownloader extends AsyncTask<String, Void, WeatherInfo>
         String result = "";
         URL url;
         HttpURLConnection httpURLConnection;
-
-        Log.i("Background", "Doing in backgroung");
 
         try {
             url = new URL(params[0]);
@@ -72,8 +70,8 @@ public class MemePageJSONDownloader extends AsyncTask<String, Void, WeatherInfo>
     protected void onPostExecute(WeatherInfo weatherInfo) {
         super.onPostExecute(weatherInfo);
 
-        if (weakMemePageFragment.get() == null) return;
+        if (weakFragment == null) return;
 
-        weakMemePageFragment.get().populateWithWeatherInfo(weatherInfo);
+        weakFragment.get().populateWithWeatherInfo(weatherInfo);
     }
 }

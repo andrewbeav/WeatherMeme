@@ -30,7 +30,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MemePageFragment extends Fragment {
+public class MemePageFragment extends Fragment implements MainActivityFragment {
 
     public MemePageFragment() {
         // Required empty public constructor
@@ -124,13 +124,14 @@ public class MemePageFragment extends Fragment {
             }
         });
 
-        MemePageJSONDownloader jsonDownloader = new MemePageJSONDownloader(this);
+        JSONDownloader jsonDownloader = new JSONDownloader(this);
         jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
 
         // Inflate the layout for this fragment
         return view;
     }
 
+    @Override
     public void populateWithWeatherInfo(WeatherInfo weatherInfo) {
             updateCityName(weatherInfo.getCityName());
             updateTemp(weatherInfo.getTemperature());
@@ -160,7 +161,7 @@ public class MemePageFragment extends Fragment {
     private String customLocation;
 
     public void refreshWeather(View view) {
-        MemePageJSONDownloader jsonDownloader = new MemePageJSONDownloader(this);
+        JSONDownloader jsonDownloader = new JSONDownloader(this);
 
         if (locationType == USE_CURRENT_LOCATION) {
             jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
@@ -177,7 +178,7 @@ public class MemePageFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == EditLocationPopup.REQUEST_CODE && resultCode == RESULT_OK) {
-             MemePageJSONDownloader jsonDownloader = new MemePageJSONDownloader(this);
+             JSONDownloader jsonDownloader = new JSONDownloader(this);
             if (!data.getStringExtra("Location").equals("CURRENT_LOCATION")) {
                 locationType = USE_CUSTOM_LOCATION;
                 customLocation = data.getStringExtra("Location");
