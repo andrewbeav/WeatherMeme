@@ -1,7 +1,5 @@
 package andrewbeav.github.io.weathermeme;
 
-import android.util.JsonReader;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

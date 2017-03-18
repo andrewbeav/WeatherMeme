@@ -2,7 +2,6 @@ package andrewbeav.github.io.weathermeme;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.BundleCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
