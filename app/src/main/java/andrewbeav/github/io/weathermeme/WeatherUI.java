@@ -6,6 +6,6 @@ import android.app.Fragment;
  * Created by andrewbeav on 3/18/17.
  */
 
-public interface MainActivityFragment {
+public interface WeatherUI {
     public abstract void populateWithWeatherInfo(WeatherInfo weatherInfo);
 }

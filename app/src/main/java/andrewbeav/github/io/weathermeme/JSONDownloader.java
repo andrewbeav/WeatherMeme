@@ -20,10 +20,10 @@ import java.net.URL;
 
 public class JSONDownloader extends AsyncTask<String, Void, WeatherInfo> {
 
-    WeakReference<MainActivityFragment> weakFragment;
+    WeakReference<WeatherUI> weakFragment;
 
-    public JSONDownloader(MainActivityFragment fragment) {
-        this.weakFragment = new WeakReference<MainActivityFragment>(fragment);
+    public JSONDownloader(WeatherUI fragment) {
+        this.weakFragment = new WeakReference<WeatherUI>(fragment);
     }
 
     @Override

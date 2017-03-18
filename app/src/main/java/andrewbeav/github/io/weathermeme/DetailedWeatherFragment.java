@@ -25,7 +25,7 @@ import java.net.URL;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailedWeatherFragment extends Fragment implements MainActivityFragment {
+public class DetailedWeatherFragment extends Fragment implements WeatherUI {
 
     public DetailedWeatherFragment() {
         // Required empty public constructor

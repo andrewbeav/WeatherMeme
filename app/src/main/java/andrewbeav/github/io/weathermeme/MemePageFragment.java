@@ -30,7 +30,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MemePageFragment extends Fragment implements MainActivityFragment {
+public class MemePageFragment extends Fragment implements WeatherUI {
 
     public MemePageFragment() {
         // Required empty public constructor
