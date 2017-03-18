@@ -14,6 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import static android.R.attr.delay;
 import static android.app.Activity.RESULT_OK;
 
@@ -114,7 +124,7 @@ public class MemePageFragment extends Fragment {
             }
         });
 
-        JSONDownloader jsonDownloader = new JSONDownloader(this);
+        WeatherInfoGetter jsonDownloader = new WeatherInfoGetter();
         jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
 
         // Inflate the layout for this fragment
@@ -150,7 +160,7 @@ public class MemePageFragment extends Fragment {
     private String customLocation;
 
     public void refreshWeather(View view) {
-        JSONDownloader jsonDownloader = new JSONDownloader(this);
+        WeatherInfoGetter jsonDownloader = new WeatherInfoGetter();
 
         if (locationType == USE_CURRENT_LOCATION) {
             jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
@@ -167,7 +177,7 @@ public class MemePageFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == EditLocationPopup.REQUEST_CODE && resultCode == RESULT_OK) {
-            JSONDownloader jsonDownloader = new JSONDownloader(this);
+            WeatherInfoGetter jsonDownloader = new WeatherInfoGetter();
             if (!data.getStringExtra("Location").equals("CURRENT_LOCATION")) {
                 locationType = USE_CUSTOM_LOCATION;
                 customLocation = data.getStringExtra("Location");
@@ -176,6 +186,60 @@ public class MemePageFragment extends Fragment {
             else {
                 locationType = USE_CURRENT_LOCATION;
                 jsonDownloader.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
+            }
+        }
+    }
+
+    private class WeatherInfoGetter extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            String result = "";
+            URL url;
+            HttpURLConnection urlConnection;
+
+            try {
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+
+                int data = reader.read();
+
+                while (data != -1) {
+                    char resultChar = (char) data;
+                    result += resultChar;
+                    data = reader.read();
+                }
+
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            JSONObject jsonObject = null;
+            if (result != null) {
+                try {
+                    jsonObject = new JSONObject(result);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                showToast("Something's Not Right. You Either Have No Internet Connection or an Invalid Custom Location", Toast.LENGTH_LONG);
+            }
+
+            if (jsonObject != null) {
+                populateWithWeatherInfo(new WeatherInfo(jsonObject));
             }
         }
     }
