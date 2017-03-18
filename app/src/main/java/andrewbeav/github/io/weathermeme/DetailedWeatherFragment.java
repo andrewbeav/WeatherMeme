@@ -51,7 +51,7 @@ public class DetailedWeatherFragment extends Fragment {
         windView = (TextView) view.findViewById(R.id.detailed_wind_value);
         windDirectionView = (TextView) view.findViewById(R.id.detailed_wind_direction_value);
 
-        WeatherInfoGetter weatherInfoGetter = new WeatherInfoGetter();
+        DetailedWeatherJSONDownloader weatherInfoGetter = new DetailedWeatherJSONDownloader(this);
         weatherInfoGetter.execute("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=bcf98db996d2d93497a184c6af4c3c7a&units=imperial");
 
         // Inflate the layout for this fragment
@@ -85,60 +85,6 @@ public class DetailedWeatherFragment extends Fragment {
     public void showToast(String message, int length) {
         Toast toast = Toast.makeText(getActivity().getApplicationContext(), message, length);
         toast.show();
-    }
-
-    private class WeatherInfoGetter extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-            String result = "";
-            URL url;
-            HttpURLConnection urlConnection;
-
-            try {
-                url = new URL(urls[0]);
-                urlConnection = (HttpURLConnection) url.openConnection();
-
-                InputStream in = urlConnection.getInputStream();
-                InputStreamReader reader = new InputStreamReader(in);
-
-                int data = reader.read();
-
-                while (data != -1) {
-                    char resultChar = (char) data;
-                    result += resultChar;
-                    data = reader.read();
-                }
-
-                return result;
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            JSONObject jsonObject = null;
-            if (result != null) {
-                try {
-                    jsonObject = new JSONObject(result);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                showToast("Something's Not Right. You Either Have No Internet Connection or an Invalid Custom Location", Toast.LENGTH_LONG);
-            }
-
-            if (jsonObject != null) {
-                populateWithWeatherInfo(new WeatherInfo(jsonObject));
-            }
-        }
     }
 
 }
